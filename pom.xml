@@ -44,6 +44,13 @@
             <version>${spring.version}</version>
             <scope>test</scope>
         </dependency>
+        <!-- httpClient begin -->
+        <dependency>
+            <groupId>commons-httpclient</groupId>
+            <artifactId>commons-httpclient</artifactId>
+            <version>3.1</version>
+        </dependency>
+        <!-- httpClient end -->
         <!--<dependency>-->
             <!--<groupId>org.slf4j</groupId>-->
             <!--<artifactId>slf4j-log4j12</artifactId>-->
