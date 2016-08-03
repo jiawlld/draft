@@ -9,10 +9,10 @@ public class Obj {
     private String a;
     private int b = 10;
 
-//    public Obj(){
-//        a = "jiawl";
-//        b = 1;
-//    }
+    public Obj(){
+        a = "jiawl";
+        b = 1;
+    }
 
     public Obj(String str){
         a = str;
