@@ -29,6 +29,49 @@ public class Test {
         obj = (Obj) Class.forName("test.unsafe.Obj").newInstance();
         System.out.println(obj.getA());
         System.out.println(obj.getB());
+
+//        comparePerformance();
+//        directorMemory();
+    }
+
+    private static void directorMemory(){
+        long memoryAddress = unsafe.allocateMemory(8);
+        unsafe.putLong(memoryAddress, 1988l);
+        System.out.println(unsafe.getLong(memoryAddress));
+    }
+
+    /**
+     *
+     * @throws InstantiationException
+     * @throws ClassNotFoundException
+     * @throws IllegalAccessException
+     * @res 19263 113355 577
+     */
+    private static void comparePerformance() throws InstantiationException, ClassNotFoundException, IllegalAccessException {
+
+        int count;
+        long time;
+
+        count = 100000000;
+        time = System.currentTimeMillis();
+        while(count-->0){
+            unsafe.allocateInstance(Obj.class);
+        }
+        System.out.println(System.currentTimeMillis() - time);
+
+        time = System.currentTimeMillis();
+        count = 100000000;
+        while(count-->0){
+            Class.forName("test.unsafe.Obj").newInstance();
+        }
+        System.out.println(System.currentTimeMillis() - time);
+
+        time = System.currentTimeMillis();
+        count = 100000000;
+        while(count-->0){
+            new Obj();
+        }
+        System.out.println(System.currentTimeMillis() - time);
     }
 
     private static Unsafe getUnsafeInstance()  {
